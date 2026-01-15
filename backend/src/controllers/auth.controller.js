@@ -3,7 +3,6 @@ const foodPartnerModel = require("../models/foodpartner.model")
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
 async function registerUser(req, res) {
 
     const { fullName, email, password } = req.body;
@@ -28,8 +27,7 @@ async function registerUser(req, res) {
 
     const token = jwt.sign({
         id: user._id,
-    }, process.env.JWT_SECRET
-    )
+    }, process.env.JWT_SECRET)
 
     res.cookie("token", token)
 
@@ -53,14 +51,15 @@ async function loginUser(req, res) {
     })
 
     if (!user) {
-        return res.status(404).json({
+        return res.status(400).json({
             message: "Invalid email or password"
         })
     }
+
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-        return res.status(404).json({
+        return res.status(400).json({
             message: "Invalid email or password"
         })
     }
@@ -68,7 +67,9 @@ async function loginUser(req, res) {
     const token = jwt.sign({
         id: user._id,
     }, process.env.JWT_SECRET)
+
     res.cookie("token", token)
+
     res.status(200).json({
         message: "User logged in successfully",
         user: {
@@ -79,12 +80,13 @@ async function loginUser(req, res) {
     })
 }
 
-async function logoutUser(req, res) {
+function logoutUser(req, res) {
     res.clearCookie("token");
     res.status(200).json({
         message: "User logged out successfully"
-    })
+    });
 }
+
 
 async function registerFoodPartner(req, res) {
 
@@ -175,8 +177,6 @@ function logoutFoodPartner(req, res) {
         message: "Food partner logged out successfully"
     });
 }
-
-
 
 module.exports = {
     registerUser,
