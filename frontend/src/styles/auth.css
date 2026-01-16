@@ -1,0 +1,92 @@
+/* Layout */
+.auth-layout{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 20px;
+  position:relative;
+}
+
+.auth-watermark{
+  position:absolute;
+  left:50%;
+  top:36%;
+  width:520px;
+  height:520px;
+  transform:translate(-40%,-10%);
+  color:var(--plate-muted);
+  opacity:var(--plate-opacity);
+  pointer-events:none;
+  z-index:0;
+}
+
+.auth-card{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:var(--max-card-width);
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-elev);
+  padding:var(--card-padding);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.auth-header{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.brand{font-weight:600;font-size:var(--brand-size);letter-spacing:0.2px}
+.tagline{color:var(--muted);font-size:13px;margin-top:2px}
+.page-title{font-size:var(--title-size);margin-top:6px;margin-bottom:2px}
+.role-text{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* Inputs */
+.input-field input{
+  width:100%;
+  height:var(--input-height);
+  padding:0 12px;
+  border-radius:10px;
+  border:1px solid var(--surface);
+  background:transparent;
+  color:var(--text);
+  font-size:15px;
+  outline: none;
+}
+.input-field input::placeholder{color:var(--muted)}
+.input-field input:focus{box-shadow:0 0 0 6px rgba(var(--accent-rgb),0.08);border-color:var(--accent)}
+
+/* Slightly more compact input spacing */
+.input-field{margin-bottom:6px}
+
+/* Button */
+.primary-btn{
+  height:48px;
+  border-radius:12px;
+  border:0;
+  background:var(--accent);
+  color:white;
+  font-weight:600;
+  font-size:15px;
+  cursor:pointer;
+  transition:transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+.primary-btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.09)}
+
+/* Secondary text */
+.secondary{font-size:13px;color:var(--muted);text-align:center}
+.secondary a{color:var(--accent);text-decoration:none;font-weight:600}
+
+/* Link subtle underline on hover */
+.secondary a:hover{text-decoration:underline}
+
+/* Responsive */
+@media (max-width:420px){
+  .auth-card{padding:18px}
+  .auth-layout{padding:28px 14px}
+}
+
+/* Card body and spacing (avoids inline styles in JSX) */
+.card-body{display:flex;flex-direction:column;gap:12px}
+.card-secondary{margin-top:12px}
