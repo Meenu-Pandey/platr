@@ -69,4 +69,56 @@ PLATR flips the model:
 ## 🏗️ Architecture
 
 Clean, modular structure with clear separation of concerns:
+frontend/ → UI, routes, services
+backend/ → controllers, models, routes, middleware
+
+
+Designed to scale without rewriting core logic.
+
+---
+
+## 🔁 System Flow
+
+1. User authenticates via JWT  
+2. Protected APIs serve feed data  
+3. Videos upload securely to ImageKit  
+4. Metadata stored in MongoDB  
+5. Engagement actions update feed state  
+
+---
+
+## 🛠️ Quick Start
+
+### Clone Repository
+```bash
+git clone https://github.com/Meenu-Pandey/platr.git
+cd platr
+Install Dependencies
+cd backend && npm install
+cd ../frontend && npm install
+
+Environment Variables
+
+Create a .env file inside backend/:
+
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+IMAGEKIT_PUBLIC_KEY=your_key
+IMAGEKIT_PRIVATE_KEY=your_key
+IMAGEKIT_URL_ENDPOINT=your_endpoint
+
+Run the App
+
+Backend
+
+npx nodemon server.js
+
+Frontend
+
+npm run dev
+
+📄 License
+
+MIT License.
 
