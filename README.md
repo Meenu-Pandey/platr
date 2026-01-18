@@ -9,8 +9,7 @@ Built as a **real-world MERN application** with clean architecture and productio
 ## 👀 Preview
 
 ### 🎬 Project Walkthrough & Demo
-**Presentation Video:**  
-`Recording.2026-01-18.160505.mp4`
+**Presentation Video:**  https://github.com/user-attachments/assets/53848271-e749-4c4e-8d5f-8e63e495f794
 
 ### 📱 App Preview
 <img width="360" alt="PLATR App Preview 1" src="https://github.com/user-attachments/assets/16ee09cd-51c7-4cd6-b3c9-4a1ff390b195" />
