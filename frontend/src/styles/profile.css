@@ -1,0 +1,470 @@
+@import './theme.css';
+
+/* Layout container */
+.profile-page {
+  max-width: 428px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Add padding when footer is present to prevent overlap */
+/* Footer: 20px top + 56px content + 20px bottom = 96px base + safe area */
+.profile-page-with-action {
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Store Header Card */
+.store-header-card {
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 0;
+}
+
+.store-header-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #424242;
+  flex-shrink: 0;
+}
+
+.store-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.store-header-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.store-header-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.store-rating-star {
+  color: #ffa500;
+  font-size: 18px;
+}
+
+.store-rating-value {
+  font-weight: 600;
+  color: #424242;
+  font-size: 16px;
+}
+
+.store-header-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.store-location-icon {
+  font-size: 16px;
+}
+
+.store-location-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.store-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.store-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.store-status-open {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.store-status-open .store-status-dot {
+  background: #2e7d32;
+}
+
+.store-status-closed {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.store-status-closed .store-status-dot {
+  background: #c62828;
+}
+
+/* Food Image Container - Reduced Height */
+.food-image-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  margin: 0;
+}
+
+.food-image-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Food Details Card - Premium Design */
+.food-details-card {
+  background: #fff;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.food-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.food-details-title-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.food-details-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.food-details-description {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.food-details-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #212121;
+  white-space: nowrap;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Quantity Controls - Aligned Design */
+.food-details-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 10px 16px;
+  width: fit-content;
+}
+
+.quantity-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  color: #424242;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.quantity-btn:hover:not(:disabled) {
+  background: #f5f5f5;
+  border-color: #bdbdbd;
+  transform: scale(1.05);
+}
+
+.quantity-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.quantity-btn:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+  color: #bdbdbd;
+  border-color: #e8e8e8;
+  opacity: 0.6;
+}
+
+.quantity-value {
+  min-width: 32px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #212121;
+}
+
+/* Sticky Footer - Clean Premium Design */
+.food-detail-footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 428px;
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 1000;
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 100%;
+}
+
+.footer-total {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.footer-total-label {
+  font-size: 12px;
+  color: #999;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-total-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.footer-btn {
+  flex: 1;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  letter-spacing: -0.01em;
+}
+
+.footer-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.footer-btn:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+.footer-btn-primary {
+  background: #2e7d32;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.25);
+}
+
+.footer-btn-primary:hover:not(:disabled) {
+  background: #1b5e20;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.35);
+}
+
+.footer-btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #e0e0e0;
+}
+
+.footer-btn-secondary:hover:not(:disabled) {
+  background: #eeeeee;
+  border-color: #bdbdbd;
+}
+
+/* Ensure footer is contained within AppShell on desktop */
+@media (min-width: 429px) {
+  .food-detail-footer {
+    max-width: 428px;
+  }
+}
+
+/* Separator */
+.profile-sep {
+  height: 1px;
+  border: none;
+  background: #e0e0e0;
+  margin: 0;
+}
+
+/* Grid View (when no foodId) */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  background: transparent;
+  padding: 0;
+}
+
+.profile-grid-item {
+  aspect-ratio: 3 / 4;
+  background: #fff;
+  overflow: hidden;
+}
+
+.profile-grid-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Stats (when no food selected) */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  border-top: 1px dashed #e0e0e0;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.profile-stat {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  gap: 8px;
+}
+
+.profile-stat-label {
+  font-size: 14px;
+  color: #666;
+  text-transform: lowercase;
+}
+
+.profile-stat-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #212121;
+}
+
+/* Responsive tweaks */
+@media (max-width: 420px) {
+  .store-header-card {
+    padding: 16px;
+  }
+  
+  .store-header-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+  
+  .store-header-name {
+    font-size: 1.25rem;
+  }
+  
+  .food-details-card {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+  
+  .food-details-name {
+    font-size: 1.25rem;
+  }
+  
+  .food-details-price {
+    font-size: 1.5rem;
+  }
+  
+  .food-detail-footer {
+    padding: 16px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  
+  .footer-total-amount {
+    font-size: 1.25rem;
+  }
+  
+  /* Adjust content padding for smaller screens */
+  /* Footer: 16px top + 48px button height + 16px bottom = 80px base + safe area */
+  .profile-page-with-action {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}

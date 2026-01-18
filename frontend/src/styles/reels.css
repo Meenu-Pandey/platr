@@ -1,0 +1,185 @@
+@import './theme.css';
+
+/* Page container - fits inside AppShell */
+.reels-page {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: var(--color-bg, #000);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Vertical feed with snap scrolling */
+.reels-feed {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  -ms-overflow-style: touch;
+  position: relative;
+}
+
+/* Each reel takes full viewport */
+.reel {
+  position: relative;
+  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: #000; /* fallback while video loads */
+  flex-shrink: 0;
+}
+
+.reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* cover entire screen */
+  object-position: center;
+  background: #000;
+}
+
+/* Overlay: content sits on top of video */
+.reel-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end; /* content near bottom */
+  pointer-events: none; /* allow click-through except controls */
+}
+
+/* Subtle top-to-bottom gradient so text is readable on any video */
+.reel-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.05) 30%,
+    rgba(0,0,0,0.35) 65%,
+    rgba(0,0,0,0.65) 100%
+  );
+}
+
+.reel-content {
+  position: relative;
+  width: 100%;
+  padding: var(--space-6, 24px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0) + 80px);
+  padding-right: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* Truncated to two lines */
+.reel-description {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+  font-size: 1rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 90ch;
+}
+
+.reel-btn {
+  align-self: flex-start;
+  background: #3b82f6;
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .3px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.reel-btn:hover { 
+  background: #60a5fa; 
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+}
+
+.reel-btn:active { 
+  transform: translateY(0);
+}
+
+.reel-btn:focus-visible { 
+  outline: 2px solid #fff; 
+  outline-offset: 3px; 
+}
+
+/* Mobile-only: Remove desktop tweaks to maintain mobile view */
+
+/* Right-side vertical actions (like, bookmark, comments) */
+.reel-actions {
+  position: absolute;
+  right: 12px;
+  bottom: 100px; /* above bottom CTA and nav */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+.reel-action {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reel-action:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+.reel-action:active { 
+  transform: scale(0.95);
+}
+
+.reel-action__count {
+  color: #fff;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin-top: 2px;
+}
+
+.reel-action-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+}
+
+.empty-state{
+  position: absolute; inset: 0; display: grid; place-items: center; color: #fff;
+}

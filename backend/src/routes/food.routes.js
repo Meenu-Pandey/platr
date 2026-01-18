@@ -13,7 +13,7 @@ const upload = multer({
 /* POST /api/food/ [protected]*/
 router.post('/',
     authMiddleware.authFoodPartnerMiddleware,
-    upload.single("video"),
+    upload.single("mama"),
     foodController.createFood)
 
 
@@ -39,6 +39,16 @@ router.get('/save',
     foodController.getSaveFood
 )
 
+router.post('/comment',
+    authMiddleware.authUserMiddleware,
+    foodController.addComment
+)
 
+router.get('/:foodId/comments',
+    authMiddleware.authUserMiddleware,
+    foodController.getComments
+)
+
+// Note: Dynamic routes like /:foodId/comments should come after static routes
 
 module.exports = router

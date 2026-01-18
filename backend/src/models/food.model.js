@@ -23,8 +23,19 @@ const foodSchema = new mongoose.Schema({
     savesCount: {
         type: Number,
         default: 0
+    },
+    commentsCount: {
+        type: Number,
+        default: 0
+    },
+    price: {
+        type: Number,
+        default: 0,
+        min: 0
     }
-})
+}, {
+    timestamps: true
+});
 
 
 const foodModel = mongoose.model("food", foodSchema);

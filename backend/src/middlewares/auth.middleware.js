@@ -18,6 +18,12 @@ async function authFoodPartnerMiddleware(req, res, next) {
 
         const foodPartner = await foodPartnerModel.findById(decoded.id);
 
+        if (!foodPartner) {
+            return res.status(401).json({
+                message: "Food partner not found. Please login again."
+            })
+        }
+
         req.foodPartner = foodPartner
 
         next()
@@ -47,6 +53,12 @@ async function authUserMiddleware(req, res, next) {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         const user = await userModel.findById(decoded.id);
+
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found. Please login again."
+            })
+        }
 
         req.user = user
 

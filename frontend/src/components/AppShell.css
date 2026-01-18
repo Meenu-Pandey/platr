@@ -1,0 +1,47 @@
+/* AppShell Container - Mobile-first wrapper */
+.app-shell-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* Mobile Shell - Fixed width container */
+.app-shell {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  position: relative;
+  background: var(--color-bg, #0f172a);
+  overflow-x: auto;
+  overflow-y: auto;
+  display: column;
+  flex-direction: row;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Desktop: Center with dark background */
+@media (min-width: 420px) {
+  .app-shell-wrapper {
+    background: #424242;
+  }
+  
+  .app-shell {
+    border-radius: 20px;
+    box-shadow: 0 80px 60px rgba(14, 14, 14, 0.8);
+    overflow: hidden;
+  }
+}
+
+/* Utility class for scrollable content */
+.scrollable-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
