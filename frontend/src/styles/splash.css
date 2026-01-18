@@ -70,8 +70,8 @@
 }
 
 .platr-plate-icon {
-  width: 32px;
-  height: 32px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,7 +83,7 @@
 }
 
 .platr-brand-text {
-  font-size: 24px;
+  font-size: 35px;
   font-weight: 700;
   letter-spacing: 0.5px;
   color: #2F6B4F;

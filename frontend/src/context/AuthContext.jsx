@@ -3,6 +3,7 @@ import { authAPI } from '../services/api';
 
 const AuthContext = createContext(null);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -29,6 +30,7 @@ export const AuthProvider = ({ children }) => {
         //   setIsAuthenticated(true);
         // }
         setLoading(false);
+      // eslint-disable-next-line no-unused-vars
       } catch (error) {
         setLoading(false);
       }
@@ -75,6 +77,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async (isFoodPartner = false) => {
     try {
       isFoodPartner ? await authAPI.logoutFoodPartner() : await authAPI.logoutUser();
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       // Logout error - continue with clearing local state
     } finally {

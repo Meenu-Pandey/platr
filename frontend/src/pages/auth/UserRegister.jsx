@@ -41,6 +41,7 @@ const UserRegister = () => {
                     window.toast.error(result.error || "Registration failed. Please try again.");
                 }
             }
+        // eslint-disable-next-line no-unused-vars
         } catch (error) {
             if (window.toast) {
                 window.toast.error("Registration failed. Please try again.");
