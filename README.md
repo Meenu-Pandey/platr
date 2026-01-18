@@ -89,18 +89,18 @@ Designed to scale without rewriting core logic.
 
 ## 🛠️ Quick Start
 
-### Clone Repository
+## 🛠️ Clone Repository
 ```bash
 git clone https://github.com/Meenu-Pandey/platr.git
 cd platr
-Install Dependencies
+
+📦 Install Dependencies
 cd backend && npm install
 cd ../frontend && npm install
 
-### Environment Variables
 
-Create a .env file inside backend/:
-
+🔐 Environment Variables
+Create a .env file inside the backend/ directory:
 PORT=5000
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_secret
@@ -108,17 +108,9 @@ IMAGEKIT_PUBLIC_KEY=your_key
 IMAGEKIT_PRIVATE_KEY=your_key
 IMAGEKIT_URL_ENDPOINT=your_endpoint
 
-### Run the App
-
+▶️ Run the App
 Backend
-
 npx nodemon server.js
 
 Frontend
-
 npm run dev
-
-📄 License
-
-MIT License.
-
