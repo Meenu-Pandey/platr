@@ -97,7 +97,7 @@ Install Dependencies
 cd backend && npm install
 cd ../frontend && npm install
 
-Environment Variables
+### Environment Variables
 
 Create a .env file inside backend/:
 
@@ -108,7 +108,7 @@ IMAGEKIT_PUBLIC_KEY=your_key
 IMAGEKIT_PRIVATE_KEY=your_key
 IMAGEKIT_URL_ENDPOINT=your_endpoint
 
-Run the App
+### Run the App
 
 Backend
 
