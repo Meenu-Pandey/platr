@@ -9,6 +9,23 @@ import { Link } from 'react-router-dom'
 // - emptyMessage: string
 const ReelFeed = ({ items = [], onLike, onSave, emptyMessage = 'No videos yet.' }) => {
   const videoRefs = useRef(new Map())
+  const feedRef = useRef(null)
+
+  // Ensure proper scroll snap behavior
+  useEffect(() => {
+    const feed = feedRef.current
+    if (!feed) return
+
+    // Set exact height for scroll container to match reel heights
+    const setFeedHeight = () => {
+      const viewportHeight = window.innerHeight
+      feed.style.height = `${viewportHeight}px`
+    }
+
+    setFeedHeight()
+    window.addEventListener('resize', setFeedHeight)
+    return () => window.removeEventListener('resize', setFeedHeight)
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -16,14 +33,14 @@ const ReelFeed = ({ items = [], onLike, onSave, emptyMessage = 'No videos yet.' 
         entries.forEach((entry) => {
           const video = entry.target
           if (!(video instanceof HTMLVideoElement)) return
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             video.play().catch(() => { /* ignore autoplay errors */ })
           } else {
             video.pause()
           }
         })
       },
-      { threshold: [0, 0.25, 0.6, 0.9, 1] }
+      { threshold: [0, 0.25, 0.5, 0.75, 1], rootMargin: '0px' }
     )
 
     videoRefs.current.forEach((vid) => observer.observe(vid))
@@ -37,7 +54,7 @@ const ReelFeed = ({ items = [], onLike, onSave, emptyMessage = 'No videos yet.' 
 
   return (
     <div className="reels-page">
-      <div className="reels-feed" role="list">
+      <div className="reels-feed" ref={feedRef} role="list">
         {items.length === 0 && (
           <div className="empty-state">
             <p>{emptyMessage}</p>

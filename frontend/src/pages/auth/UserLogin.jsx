@@ -58,7 +58,7 @@ const UserLogin = () => {
           </button>
         </form>
         <div className="auth-alt-action">
-          New here? <a href="/user/register">Create account</a>
+          New here? <a href="/register">Create account</a>
         </div>
       </div>
     </div>

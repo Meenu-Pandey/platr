@@ -98,7 +98,7 @@ const FoodPartnerRegister = () => {
           </button>
         </form>
         <div className="auth-alt-action">
-          Already a partner? <Link to="/food-partner/login">Sign in</Link>
+          Already a partner? <Link to="/login">Sign in</Link>
         </div>
       </div>
     </div>

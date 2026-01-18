@@ -107,19 +107,20 @@ async function loginUser(req, res) {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-        })
+        });
 
-    res.status(200).json({
-        message: "User logged in successfully",
-        user: {
-            _id: user._id,
-            email: user.email,
-            fullName: user.fullName
-        }
-    });
+        res.status(200).json({
+            message: "User logged in successfully",
+            user: {
+                _id: user._id,
+                email: user.email,
+                fullName: user.fullName
+            }
+        });
     } catch (error) {
+        console.error("User login error:", error);
         res.status(500).json({
-            message: "Login failed. Please try again."
+            message: error.message || "Login failed. Please try again."
         });
     }
 }
@@ -218,11 +219,31 @@ async function loginFoodPartner(req, res) {
             });
         }
 
-        const foodPartner = await foodPartnerModel.findOne({
-            email: email.trim().toLowerCase()
+        const normalizedEmail = email.trim().toLowerCase();
+        
+        // Find food partner - try normalized email first, then case-insensitive search
+        let foodPartner = await foodPartnerModel.findOne({
+            email: normalizedEmail
         });
+        
+        // If not found, try case-insensitive search for legacy accounts
+        if (!foodPartner) {
+            const allFoodPartners = await foodPartnerModel.find({});
+            foodPartner = allFoodPartners.find(
+                fp => fp.email && fp.email.toLowerCase() === normalizedEmail
+            );
+        }
 
         if (!foodPartner) {
+            console.log("Food partner not found for email:", normalizedEmail);
+            return res.status(400).json({
+                message: "Invalid email or password"
+            });
+        }
+
+        // Check if password exists and is a valid hash
+        if (!foodPartner.password) {
+            console.log("Food partner found but has no password hash");
             return res.status(400).json({
                 message: "Invalid email or password"
             });
@@ -231,6 +252,7 @@ async function loginFoodPartner(req, res) {
         const isPasswordValid = await bcrypt.compare(password, foodPartner.password);
 
         if (!isPasswordValid) {
+            console.log("Password validation failed for food partner:", foodPartner.email);
             return res.status(400).json({
                 message: "Invalid email or password"
             });
@@ -248,19 +270,20 @@ async function loginFoodPartner(req, res) {
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-        })
+        });
 
-    res.status(200).json({
-        message: "Food partner logged in successfully",
-        foodPartner: {
-            _id: foodPartner._id,
-            email: foodPartner.email,
-            name: foodPartner.name
-        }
-    });
+        res.status(200).json({
+            message: "Food partner logged in successfully",
+            foodPartner: {
+                _id: foodPartner._id,
+                email: foodPartner.email,
+                name: foodPartner.name
+            }
+        });
     } catch (error) {
+        console.error("Food partner login error:", error);
         res.status(500).json({
-            message: "Login failed. Please try again."
+            message: error.message || "Login failed. Please try again."
         });
     }
 }

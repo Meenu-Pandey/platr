@@ -1,12 +1,15 @@
 .route-wrapper {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 }
 
+/* Allow scrolling for specific routes that need it */
+.route-wrapper:has(.home-container) {
+  overflow: hidden;
+}

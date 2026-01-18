@@ -85,7 +85,7 @@ const UserRegister = () => {
                     </button>
                 </form>
                 <div className="auth-alt-action">
-                    Already have an account? <Link to="/user/login">Sign in</Link>
+                    Already have an account? <Link to="/login">Sign in</Link>
                 </div>
             </div>
         </div>

@@ -59,7 +59,7 @@ const FoodPartnerLogin = () => {
           </button>
         </form>
         <div className="auth-alt-action">
-          New partner? <a href="/food-partner/register">Create an account</a>
+          New partner? <a href="/register">Create an account</a>
         </div>
       </div>
     </div>

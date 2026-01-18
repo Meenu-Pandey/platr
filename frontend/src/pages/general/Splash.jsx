@@ -14,7 +14,7 @@ const Splash = () => {
         if (isAuthenticated) {
             navigate('/home');
         } else {
-            navigate('/user/login');
+            navigate('/login');
         }
     };
 
